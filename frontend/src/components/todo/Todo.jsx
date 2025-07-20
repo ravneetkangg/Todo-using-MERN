@@ -4,13 +4,14 @@ import TodoCards from './TodoCards';
 import UpdateTodo from './UpdateTodo';
 import axios from 'axios';
 
+const BASE_URL = process.env.REACT_APP_BASE_URL;
+
 const Todo = () => {
     const [inputs, setInputs] = useState({ title: "", body: "" });
     const [todos, setTodos] = useState([]);
-    const [array, setArray] = useState([]);
     const [isUpdating, setIsUpdating] = useState(false);
     const [currentTodo, setCurrentTodo] = useState(null);
-    let id = sessionStorage.getItem("id");
+    const id = sessionStorage.getItem("id");
 
     const handleChange = (event) => {
         const { name, value } = event.target;
@@ -21,25 +22,40 @@ const Todo = () => {
     };
 
     const handleSubmit = async () => {
-        if (id) {
-            await axios.post("http://localhost:4700/api/v2/addTask", { title: inputs.title, body: inputs.body, id: id })
-                .then((response) => console.log(response.data.list));
+        if (!id) return;
+
+        try {
+            const response = await axios.post(`${BASE_URL}/api/v2/addTask`, {
+                title: inputs.title,
+                body: inputs.body,
+                id: id
+            });
+
+            const newTask = response?.data?.task;
+            if (newTask && newTask._id) {
+                setTodos(prevTodos => [...prevTodos, newTask]);
+            } else {
+                console.warn("Task added but not returned from server.");
+            }
+        } catch (error) {
+            console.error("Error adding task:", error);
         }
-        setTodos(prevTodos => [...prevTodos, inputs]);
+
         setInputs({ title: "", body: "" });
     };
 
     const deleteTodoHandler = async (taskId) => {
         try {
-            await axios.delete(`http://localhost:4700/api/v2/deleteTask/${taskId}`);
-            setArray(prevTodos => prevTodos.filter(todo => todo._id !== taskId));
+            await axios.delete(`${BASE_URL}/api/v2/deleteTask/${taskId}`);
+            setTodos(prevTodos => prevTodos.filter(todo => todo._id !== taskId));
         } catch (error) {
             console.error("Error deleting task:", error);
         }
     };
 
-    const updateTodoHandler = (id) => {
-        setCurrentTodo({ ...todos[id], id });
+    const updateTodoHandler = (index) => {
+        if (!todos[index]) return;
+        setCurrentTodo({ ...todos[index], id: index });
         setIsUpdating(true);
     };
 
@@ -48,14 +64,25 @@ const Todo = () => {
     };
 
     useEffect(() => {
-        async function fetch() {
-            await axios.get(`http://localhost:4700/api/v2/getTasks/${id}`).then((response) => {
-                console.log(response.data.tasks);
-                setArray(response.data.tasks);
-            });
+        async function fetchTodos() {
+            if (!id) return;
+
+            try {
+                const response = await axios.get(`${BASE_URL}/api/v2/getTasks/${id}`);
+                const taskList = response?.data?.tasks;
+                if (Array.isArray(taskList)) {
+                    setTodos(taskList);
+                } else {
+                    setTodos([]);
+                }
+            } catch (error) {
+                console.error("Failed to fetch tasks:", error);
+                setTodos([]);
+            }
         }
-        fetch();
-    }, [handleSubmit]);
+
+        fetchTodos();
+    }, [id]);
 
     return (
         <>
@@ -91,16 +118,22 @@ const Todo = () => {
 
             {!isUpdating && (
                 <div className='todo-body'>
-                    {array.map((item, index) => (
-                        <TodoCards
-                            key={item._id}
-                            id={item._id}
-                            title={item.title}
-                            body={item.body}
-                            deleteTodoHandler={() => deleteTodoHandler(item._id)}
-                            updateTodoHandler={updateTodoHandler}
-                        />
-                    ))}
+                    {Array.isArray(todos) && todos.length > 0 ? (
+                        todos
+                            .filter(item => item && item._id)
+                            .map((item, index) => (
+                                <TodoCards
+                                    key={item._id}
+                                    id={item._id}
+                                    title={item.title}
+                                    body={item.body}
+                                    deleteTodoHandler={() => deleteTodoHandler(item._id)}
+                                    updateTodoHandler={() => updateTodoHandler(index)}
+                                />
+                            ))
+                    ) : (
+                        <p style={{ textAlign: "center", marginTop: "2rem" }}>No tasks to show</p>
+                    )}
                 </div>
             )}
 
@@ -111,6 +144,6 @@ const Todo = () => {
             )}
         </>
     );
-}
+};
 
 export default Todo;

@@ -1,7 +1,7 @@
 import React from 'react';
 import './UpdateTodo.css';
 
-const UpdateTodo = ({ currentTodo, handleUpdate, closeUpdateTodo }) => {
+const UpdateTodo = ({ currentTodo, closeUpdateTodo }) => {
     return (
         <div className="update-todo-fullwidth-container">
             <h2 className="update-todo-title">Update Todo</h2>
@@ -27,8 +27,19 @@ const UpdateTodo = ({ currentTodo, handleUpdate, closeUpdateTodo }) => {
                     required
                 ></textarea>
             </div>
-            <button className="update-todo-btn" onClick={() => handleUpdate({ id: currentTodo.id, title: document.getElementById('title').value, body: document.getElementById('body').value })}>Update</button>
-            <button className="update-todo-btn" onClick={closeUpdateTodo}>Close</button>
+
+            <button
+                className="update-todo-btn"
+                onClick={() => {
+                    alert("Update functionality is not implemented yet.");
+                }}
+            >
+                Update
+            </button>
+            
+            <button className="update-todo-btn" onClick={closeUpdateTodo}>
+                Close
+            </button>
         </div>
     );
 };

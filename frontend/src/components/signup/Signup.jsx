@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
     const navigate = useNavigate();
-    
+
     const [inputs, setInputs] = useState({ email: "", username: "", password: "" });
 
     function handleChange(event) {
@@ -20,7 +20,7 @@ const Signup = () => {
     async function submit(e) {
         e.preventDefault();
         try {
-            const response = await axios.post("http://localhost:4700/api/v1/register", inputs);
+            const response = await axios.post(`${process.env.REACT_APP_BASE_URL}/api/v1/register`, inputs);
             if (response.data.message === "User already exists") {
                 alert(response.data.message);
             } else {
