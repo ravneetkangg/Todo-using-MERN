@@ -10,7 +10,10 @@ const list = require('./routes/list');
 
 // Middleware
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: "https://todo-ravneet.vercel.app",
+    credentials: true
+}));
 dbConnect();
 
 // Routes
