@@ -68,8 +68,11 @@ const Todo = () => {
             if (!id) return;
 
             try {
-                const response = await axios.get(`${BASE_URL}/api/v2/getTasks/${id}`);
-                const taskList = response?.data?.tasks;
+                const response = await axios.get(`${BASE_URL}/api/v2/getTasks/${id}`, {
+                    headers: {
+                        "ngrok-skip-browser-warning": "true"
+                    }
+                }); const taskList = response?.data?.tasks;
                 if (Array.isArray(taskList)) {
                     setTodos(taskList);
                 } else {
