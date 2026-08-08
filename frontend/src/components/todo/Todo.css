@@ -1,90 +1,99 @@
 /* Todo.css */
 
-body {
-    font-family: 'Roboto', sans-serif;
-    background-color: #f4f7f6;
-    margin: 0;
-    padding: 0;
-}
-
 .todo-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    background-color: #ffffff;
-    border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    width: 600px;
-    margin: 50px auto;
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid var(--glass-border);
+    max-width: 600px;
+    margin: 40px auto;
+    text-align: center;
+    animation: fadeIn 0.5s ease-out forwards;
 }
 
 .todo-container h2 {
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.todo-container .form-group {
     margin-bottom: 20px;
-    color: #333;
-    font-size: 24px;
-    font-weight: 500;
+    text-align: left;
 }
 
-.form-group {
-    margin-bottom: 15px;
-    width: 100%;
-}
-
-.form-group label {
+.todo-container .form-group label {
     display: block;
     margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
     font-weight: 500;
-    color: #555;
 }
 
-.form-group input,
-.form-group textarea {
+.todo-container .form-group input,
+.todo-container .form-group textarea {
     width: 100%;
-    padding: 12px;
-    border: 1px solid #ddd;
-    border-radius: 6px;
+    padding: 12px 16px;
     box-sizing: border-box;
-    font-size: 16px;
-    color: #333;
-    background-color: #f9f9f9;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
     transition: all 0.3s ease;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    border-color: #007bff;
-    background-color: #fff;
-    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
     outline: none;
+    font-family: inherit;
 }
 
-.form-group textarea {
+.todo-container .form-group textarea {
+    min-height: 100px;
     resize: vertical;
-    height: 300px;
-    /* Increased height */
 }
 
-.btn {
-    background-color: #007bff;
+.todo-container .form-group input:focus,
+.todo-container .form-group textarea:focus {
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.todo-container .btn {
+    background: var(--accent-gradient);
     color: white;
     border: none;
-    border-radius: 6px;
-    padding: 12px;
-    width: 100%;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
-.btn:hover {
-    background-color: #0056b3;
+.todo-container .btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
 }
 
+/* Grid for Todo Cards */
 .todo-body {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    padding: 20px 40px 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.update-holder {
     display: flex;
-    flex-direction: row;
+    justify-content: center;
     align-items: center;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
+    min-height: 80vh;
 }

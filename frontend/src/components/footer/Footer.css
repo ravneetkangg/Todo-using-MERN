@@ -1,4 +1,24 @@
+/* Footer.css */
+
 .footer {
     text-align: center;
-    background-color: antiquewhite;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-top: 1px solid var(--glass-border);
+    padding: 20px 0;
+    margin-top: auto;
+    width: 100%;
+}
+
+.footer-content {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.footer-subtitle {
+    margin-top: 5px;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    opacity: 0.7;
 }

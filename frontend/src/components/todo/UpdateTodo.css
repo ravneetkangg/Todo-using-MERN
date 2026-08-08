@@ -1,66 +1,94 @@
+/* UpdateTodo.css */
+
 .update-todo-fullwidth-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 40px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
     width: 100%;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    background-color: #fff;
-    box-sizing: border-box;
+    max-width: 500px;
+    text-align: center;
+    animation: fadeIn 0.4s ease-out forwards;
 }
 
 .update-todo-title {
-    font-size: 1.5em;
-    margin-bottom: 15px;
+    color: var(--text-primary);
+    margin-bottom: 25px;
+    font-size: 1.8rem;
+    font-weight: 700;
 }
 
 .update-todo-form-group {
-    margin-bottom: 15px;
+    margin-bottom: 20px;
+    text-align: left;
 }
 
 .update-todo-label {
     display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
+    margin-bottom: 8px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 500;
 }
 
 .update-todo-input,
 .update-todo-textarea {
     width: 100%;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    padding: 12px 16px;
     box-sizing: border-box;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    color: var(--text-primary);
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
 }
 
 .update-todo-textarea {
+    min-height: 120px;
     resize: vertical;
-    height: 300px;
+}
+
+.update-todo-input:focus,
+.update-todo-textarea:focus {
+    border-color: var(--accent-primary);
+    background: rgba(255, 255, 255, 0.08);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
 }
 
 .update-todo-btn {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    background: var(--accent-gradient);
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 12px;
+    padding: 12px 24px;
+    font-size: 1.1rem;
+    font-weight: 600;
     cursor: pointer;
-    font-size: 16px;
-    margin-right: 10px;
-    /* Add some space between buttons */
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
+    width: calc(50% - 10px);
+    margin: 10px 5px 0;
+    display: inline-block;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
 }
 
 .update-todo-btn:hover {
-    background-color: #45a049;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(99, 102, 241, 0.5);
 }
 
-.update-todo-btn.close {
-    background-color: #f44336;
-    /* Different color for close button */
+.update-todo-btn:last-child {
+    background: rgba(255, 255, 255, 0.1);
+    box-shadow: none;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.update-todo-btn.close:hover {
-    background-color: #d32f2f;
+.update-todo-btn:last-child:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
 }

@@ -1,6 +1,52 @@
-.about-container {
+/* About.css */
+
+.about-page {
+    min-height: calc(100vh - 80px);
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 40px 20px;
+}
+
+.about-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+    border: 1px solid var(--glass-border);
+    max-width: 800px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-out forwards;
+}
+
+.about-title {
+    font-size: 3rem;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    background: linear-gradient(to right, #fff, var(--accent-primary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.about-text {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    line-height: 1.8;
+    text-align: left;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .about-container {
+        padding: 30px 20px;
+    }
+    .about-title {
+        font-size: 2.2rem;
+    }
 }

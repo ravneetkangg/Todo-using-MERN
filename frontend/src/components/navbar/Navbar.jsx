@@ -38,9 +38,11 @@ const Navbar = () => {
                             <li className="nav-item">
                                 <Link className="nav-link" to="/about">About</Link>
                             </li>
-                            <li className="nav-item">
-                                <Link className="nav-link" to="/todo">Todo</Link>
-                            </li>
+                            {isLoggedIn && (
+                                <li className="nav-item">
+                                    <Link className="nav-link" to="/todo">Todo</Link>
+                                </li>
+                            )}
 
                             {!isLoggedIn &&
                                 <>
@@ -58,12 +60,11 @@ const Navbar = () => {
                                     <li className="nav-item" onClick={logout}>
                                         <Link className="nav-link btn-custom" to="/">Logout</Link>
                                     </li>
+                                    <li className="nav-item">
+                                        <img src='https://cdn-icons-png.flaticon.com/512/1077/1077114.png' className='user-png' alt="user" />
+                                    </li>
                                 </>
-
                             }
-                            <li className="nav-item">
-                                <img src='https://cdn-icons-png.flaticon.com/512/1077/1077114.png' className='user-png' alt="user" />
-                            </li>
                         </ul>
                     </div>
                 </div>

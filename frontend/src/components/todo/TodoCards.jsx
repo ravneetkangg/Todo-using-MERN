@@ -5,19 +5,17 @@ import { GrDocumentUpdate } from "react-icons/gr";
 
 const TodoCards = ({ title, body, deleteTodoHandler, updateTodoHandler, id }) => {
     return (
-        <div className="card todo-card">
-            <div className="card-body">
-                <h5 className="card-title">{title}</h5>
-                <p className="card-text">{body}</p>
+        <div className="todo-card">
+            <div className="todo-card-content">
+                <h5 className="todo-card-title">{title}</h5>
+                <p className="todo-card-body">{body}</p>
             </div>
-            <div className="card-footer">
-                <div className="icon-container" onClick={() => updateTodoHandler(id)}>
-                    <GrDocumentUpdate className="icon-upd" />
-                    <p className="action-text">Update</p>
+            <div className="todo-card-actions">
+                <div className="icon update" onClick={() => updateTodoHandler(id)} title="Update">
+                    <GrDocumentUpdate size={20} />
                 </div>
-                <div className="icon-container" onClick={() => deleteTodoHandler(id)}>
-                    <p className="action-text">Delete</p>
-                    <MdDelete className="icon-del" />
+                <div className="icon delete" onClick={() => deleteTodoHandler(id)} title="Delete">
+                    <MdDelete size={22} />
                 </div>
             </div>
         </div>

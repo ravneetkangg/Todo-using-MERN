@@ -1,17 +1,21 @@
 import React from 'react'
 import "./About.css"
+
 const About = () => {
   return (
-    <>
-    <div className="about-container">
-
-    <h1>ABOUT US</h1>
-    <p> Lorem ipsum dolor sit amet consectetur adipisici Lorem ipsum dolor sit amet Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi soluta hic corrupti nihil iure perspiciatis quis neque ratione nemo, eaque rerum, laboriosam doloribus impedit optio, quam ex? Recusandae, debitis nihil.consectetu
-      r adipisicing elit. Sapiente quidem accusamus nostrum quo quas unde accusantium at minus et! Quasi odit excepturi eaque numquam, nemo corporis
-       cum corrupti laboriosam eos!ng elit. Earum<br/> tenetur possimus iusto cumque, 
-      quaerat perspiciatis facilis eveniet esse temporibus excepturi Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus ut dolore numquam itaque cum ipsam odit quisquam earum reprehenderit, odio molestiae atque distinctio. Cupiditate a perspiciatis harum ex quod <consectetur className="lorem"></consectetur>cupiditate atque amet enim sit voluptates inventore iste provident non</p>
+    <div className="about-page">
+      <div className="about-container">
+        <h1 className="about-title">About Us</h1>
+        <div className="about-text">
+          <p>
+            Welcome to the ultimate Todo application designed to help you become focused, organized, and calm. Our mission is to provide you with a premium, distraction-free environment where you can manage your daily tasks efficiently.
+          </p>
+          <p>
+            Built with modern web technologies, this platform prioritizes speed, security, and a beautiful user experience. Whether you are managing personal chores or professional projects, we have got you covered.
+          </p>
+        </div>
+      </div>
     </div>
-    </>
   )
 }
 

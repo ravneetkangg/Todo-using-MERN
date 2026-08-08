@@ -1,17 +1,19 @@
 import React from 'react';
-import './Home.css'; // Import a CSS file if needed
+import './Home.css';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
     return (
-        <div className="home d-flex justify-content-center align-items-center">
-            <div className="container d-flex justify-content-center align-items-center flex-column">
-                <h1 className="text-center">
-                    Organize your <br /> work and life, finally.
+        <div className="home">
+            <div className="hero-content">
+                <h1 className="hero-title">
+                    Organize your <span>work</span><br /> and <span>life</span>, finally.
                 </h1>
-                <p className="text-center">
-                    Become focused, organized, and calm with <br /> todo app. The World's #1 task manager app.
+                <p className="hero-subtitle">
+                    Become focused, organized, and calm with our modern todo app. <br />
+                    The World's #1 task manager app with a premium experience.
                 </p>
-                <button className="btn btn-primary">Get Started</button>
+                <Link to="/todo" className="btn-hero">Get Started</Link>
             </div>
         </div>
     );
